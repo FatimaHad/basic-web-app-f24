@@ -111,4 +111,25 @@ describe("QueryProcessor", () => {
         expect(QueryProcessor("Which of the following numbers are primes: 23, 34, 55, 2, 19?")).toBe("23, 2, 19");
         expect(QueryProcessor("Which of the following numbers are primes: 4, 6, 8, 9, 10?")).toBe("None");
     });
+    // Test cases to handle different mathematical queries
+test('should return correct results for multi-addition queries', () => {
+    expect(QueryProcessor("What is 95 plus 34 plus 58?")).toBe("187");
+    expect(QueryProcessor("What is 40 plus 4 plus 50?")).toBe("94");
+});
+
+test('should return correct results for exponentiation queries', () => {
+    expect(QueryProcessor("What is 42 to the power of 9?")).toBe(Math.pow(42, 9).toString());
+});
+
+test('should return the largest number for largest number comparison', () => {
+    expect(QueryProcessor("Which of the following numbers is the largest: 29, 3, 61?")).toBe("61");
+});
+
+test('should return the correct prime numbers', () => {
+    expect(QueryProcessor("Which of the following numbers are primes: 94, 87, 85, 53, 26?")).toBe("53");
+});
+
+test('should return the correct number that is both a square and a cube', () => {
+    expect(QueryProcessor("Which of the following numbers is both a square and a cube: 729, 3483, 4683, 125, 3481, 879, 796?")).toBe("729");
+});
 });
