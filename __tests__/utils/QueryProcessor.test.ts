@@ -76,4 +76,18 @@ describe("QueryProcessor", () => {
         expect(QueryProcessor("Which of the following numbers is the largest: 57, 89, 21?")).toBe("89");
         expect(QueryProcessor("Which of the following numbers is the largest: 47, 63, 42?")).toBe("63");
     });
+    test('should return correct results for addition questions', () => {
+        expect(QueryProcessor("What is 12 plus 39?")).toBe("51");
+        expect(QueryProcessor("What is 10 plus 51?")).toBe("61");
+        expect(QueryProcessor("What is 73 plus 54?")).toBe("127");
+    });
+    
+    test('should return the largest number for largest number comparison', () => {
+        expect(QueryProcessor("Which of the following numbers is the largest: 30, 19, 28?")).toBe("30");
+        expect(QueryProcessor("Which of the following numbers is the largest: 98, 49, 33?")).toBe("98");
+        expect(QueryProcessor("Which of the following numbers is the largest: 91, 50, 38?")).toBe("91");
+        expect(QueryProcessor("Which of the following numbers is the largest: 17, 16, 47?")).toBe("47");
+        expect(QueryProcessor("Which of the following numbers is the largest: 95, 22, 26?")).toBe("95");
+        expect(QueryProcessor("Which of the following numbers is the largest: 79, 8, 77?")).toBe("79");
+    });
 });
