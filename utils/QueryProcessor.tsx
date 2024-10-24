@@ -51,5 +51,22 @@ export default function QueryProcessor(query: string): string {
     return result ? result.toString() : "None";
   }
 
+  function isPrime(num: number): boolean {
+    if (num <= 1) return false; // Numbers less than or equal to 1 are not prime
+    if (num === 2) return true; // 2 is the only even prime number
+    if (num % 2 === 0) return false; // Exclude even numbers
+
+    // Check divisibility from 3 to sqrt(num)
+    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        if (num % i === 0) return false;
+    }
+    return true;
+  }
+  const primeNumberMatch = query.match(/Which of the following numbers are primes: ([\d,\s]+)\?/);
+  if (primeNumberMatch) {
+      const numbers = primeNumberMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+      const primes = numbers.filter(isPrime);
+      return primes.length > 0 ? primes.join(', ') : "None";
+  }
   return "";
 }

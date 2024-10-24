@@ -106,4 +106,9 @@ describe("QueryProcessor", () => {
     test('should return the number that is both a square and a cube', () => {
         expect(QueryProcessor("Which of the following numbers is both a square and a cube: 3375, 729, 2681, 1702, 557, 2401, 1110?")).toBe("729");
     });
+    test('should return correct prime numbers', () => {
+        expect(QueryProcessor("Which of the following numbers are primes: 94, 87, 85, 53, 26?")).toBe("53");
+        expect(QueryProcessor("Which of the following numbers are primes: 23, 34, 55, 2, 19?")).toBe("23, 2, 19");
+        expect(QueryProcessor("Which of the following numbers are primes: 4, 6, 8, 9, 10?")).toBe("None");
+    });
 });
