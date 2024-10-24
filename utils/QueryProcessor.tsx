@@ -20,33 +20,35 @@ export default function QueryProcessor(query: string): string {
     const cbrt = Math.cbrt(num);
     return Number.isInteger(sqrt) && Number.isInteger(cbrt);
   }
-  // Check if the query is an addition or multiplication question
+
+  
+  // Handle arithmetic questions (addition and multiplication)
   const arithmeticMatch = query.match(/What is (\d+) (plus|multiplied by) (\d+)\?/);
   if (arithmeticMatch) {
-      const num1 = parseInt(arithmeticMatch[1], 10);
-      const num2 = parseInt(arithmeticMatch[3], 10);
-      const operation = arithmeticMatch[2];
+    const num1 = parseInt(arithmeticMatch[1], 10);
+    const num2 = parseInt(arithmeticMatch[3], 10);
+    const operation = arithmeticMatch[2];
 
-      if (operation === "plus") {
-          return (num1 + num2).toString();
-      } else if (operation === "multiplied by") {
-          return (num1 * num2).toString();
-      }
+    if (operation === "plus") {
+        return (num1 + num2).toString();
+    } else if (operation === "multiplied by") {
+        return (num1 * num2).toString();
+    }
   }
 
-  // Check if the query is asking for the largest number
+  // Handle largest number questions
   const largestNumberMatch = query.match(/Which of the following numbers is the largest: ([\d,\s]+)\?/);
   if (largestNumberMatch) {
-      const numbers = largestNumberMatch[1].split(',').map(num => parseInt(num.trim(), 10));
-      return Math.max(...numbers).toString();
+    const numbers = largestNumberMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+    return Math.max(...numbers).toString();
   }
 
-  // Check if the query is asking for a number that is both a square and a cube
+  // Handle square and cube number questions
   const squareAndCubeMatch = query.match(/Which of the following numbers is both a square and a cube: ([\d,\s]+)\?/);
   if (squareAndCubeMatch) {
-      const numbers = squareAndCubeMatch[1].split(',').map(num => parseInt(num.trim(), 10));
-      const result = numbers.find(isSquareAndCube);
-      return result ? result.toString() : "None";
+    const numbers = squareAndCubeMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+    const result = numbers.find(isSquareAndCube);
+    return result ? result.toString() : "None";
   }
 
   return "";
