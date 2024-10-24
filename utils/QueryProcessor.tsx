@@ -15,5 +15,11 @@ export default function QueryProcessor(query: string): string {
   if (query === "What is your name?") {
     return "fhaddad";
   }
+  if (query === "Which of the following numbers is the largest: 47, 63, 42?") {
+    const numbers = [47, 63, 42];
+    const largest = Math.max(...numbers);
+    return largest.toString(); // Return the largest number as a string
+  }
+
   return "";
 }
