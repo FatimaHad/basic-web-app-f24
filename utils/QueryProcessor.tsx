@@ -12,5 +12,8 @@ export default function QueryProcessor(query: string): string {
     //TODO update the corresponding test case in __tests__
     return ( "fhaddad" );
   }
+  if (query === "What is your name?") {
+    return "fhaddad";
+  }
   return "";
 }
