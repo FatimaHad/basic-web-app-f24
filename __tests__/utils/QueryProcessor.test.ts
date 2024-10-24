@@ -36,4 +36,17 @@ describe("QueryProcessor", () => {
         const response: string = QueryProcessor(query);
         expect(response).toBe("63");
     });
+    // Test cases
+    test('should return the correct addition results', () => {
+        expect(QueryProcessor("What is 38 plus 8?")).toBe("46");
+        expect(QueryProcessor("What is 79 plus 36?")).toBe("115");
+        expect(QueryProcessor("What is 57 plus 72?")).toBe("129");
+    });
+
+    test('should return the largest number for comparison queries', () => {
+        expect(QueryProcessor("Which of the following numbers is the largest: 27, 57, 71?")).toBe("71");
+        expect(QueryProcessor("Which of the following numbers is the largest: 55, 74, 77?")).toBe("77");
+        expect(QueryProcessor("Which of the following numbers is the largest: 57, 89, 21?")).toBe("89");
+        expect(QueryProcessor("Which of the following numbers is the largest: 47, 63, 42?")).toBe("63");
+    });
 });
