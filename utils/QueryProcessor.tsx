@@ -15,20 +15,39 @@ export default function QueryProcessor(query: string): string {
   if (query === "What is your name?") {
     return "fhaddad";
   }
-  const additionMatch = query.match(/What is (\d+) plus (\d+)\?/);
-    if (additionMatch) {
-        const num1 = parseInt(additionMatch[1], 10);
-        const num2 = parseInt(additionMatch[2], 10);
-        return (num1 + num2).toString();
-    }
+  function isSquareAndCube(num: number): boolean {
+    const sqrt = Math.sqrt(num);
+    const cbrt = Math.cbrt(num);
+    return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+  }
+  // Check if the query is an addition or multiplication question
+  const arithmeticMatch = query.match(/What is (\d+) (plus|multiplied by) (\d+)\?/);
+  if (arithmeticMatch) {
+      const num1 = parseInt(arithmeticMatch[1], 10);
+      const num2 = parseInt(arithmeticMatch[3], 10);
+      const operation = arithmeticMatch[2];
 
-    // Check if the query is asking for the largest number
-    const largestNumberMatch = query.match(/Which of the following numbers is the largest: ([\d,\s]+)\?/);
-    if (largestNumberMatch) {
-        // Extract numbers from the query
-        const numbers = largestNumberMatch[1].split(',').map(num => parseInt(num.trim(), 10));
-        return Math.max(...numbers).toString();
-    }
+      if (operation === "plus") {
+          return (num1 + num2).toString();
+      } else if (operation === "multiplied by") {
+          return (num1 * num2).toString();
+      }
+  }
+
+  // Check if the query is asking for the largest number
+  const largestNumberMatch = query.match(/Which of the following numbers is the largest: ([\d,\s]+)\?/);
+  if (largestNumberMatch) {
+      const numbers = largestNumberMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+      return Math.max(...numbers).toString();
+  }
+
+  // Check if the query is asking for a number that is both a square and a cube
+  const squareAndCubeMatch = query.match(/Which of the following numbers is both a square and a cube: ([\d,\s]+)\?/);
+  if (squareAndCubeMatch) {
+      const numbers = squareAndCubeMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+      const result = numbers.find(isSquareAndCube);
+      return result ? result.toString() : "None";
+  }
 
   return "";
 }

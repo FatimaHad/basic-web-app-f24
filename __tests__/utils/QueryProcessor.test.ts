@@ -90,4 +90,20 @@ describe("QueryProcessor", () => {
         expect(QueryProcessor("Which of the following numbers is the largest: 95, 22, 26?")).toBe("95");
         expect(QueryProcessor("Which of the following numbers is the largest: 79, 8, 77?")).toBe("79");
     });
+    // Test cases
+    test('should return correct results for addition and multiplication questions', () => {
+        expect(QueryProcessor("What is 57 multiplied by 88?")).toBe("5016");
+        expect(QueryProcessor("What is 44 plus 91?")).toBe("135");
+        expect(QueryProcessor("What is 46 plus 43?")).toBe("89");
+    });
+
+    test('should return the largest number for largest number comparison', () => {
+        expect(QueryProcessor("Which of the following numbers is the largest: 90, 56, 80?")).toBe("90");
+        expect(QueryProcessor("Which of the following numbers is the largest: 88, 10, 74?")).toBe("88");
+        expect(QueryProcessor("Which of the following numbers is the largest: 51, 41, 8?")).toBe("51");
+    });
+
+    test('should return the number that is both a square and a cube', () => {
+        expect(QueryProcessor("Which of the following numbers is both a square and a cube: 3375, 729, 2681, 1702, 557, 2401, 1110?")).toBe("729");
+    });
 });
